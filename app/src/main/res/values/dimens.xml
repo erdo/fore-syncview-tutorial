@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="spacer">10dp</dimen>
+    <dimen name="top_and_bottom_bar">90dp</dimen>
+    <dimen name="basket_counter_size">45dp</dimen>
+    <dimen name="basket_counter_margin">4dp</dimen>
+    <dimen name="button_margin">20dp</dimen>
+    <dimen name="button_size">60dp</dimen>
+    <dimen name="bottle_width">120dp</dimen>
+    <dimen name="price_height">35dp</dimen>
+    <dimen name="total_and_savings_margin">110dp</dimen>
+</resources>

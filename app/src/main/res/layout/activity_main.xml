@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<foo.bar.example.forewater.ui.WaterSellerView xmlns:android="http://schemas.android.com/apk/res/android"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent">
+
+    <!-- top bar -->
+
+    <FrameLayout android:id="@+id/waterseller_topbar_framelayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/top_and_bottom_bar"
+                 android:background="@color/colorPrimary"
+                 android:layout_alignParentTop="true"/>
+
+    <FrameLayout android:id="@+id/waterseller_topborder_framelayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="2dp"
+                 android:background="@color/blackish"
+                 android:layout_below="@+id/waterseller_topbar_framelayout"/>
+
+    <ImageView
+            android:id="@+id/waterseller_basket_img"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/top_and_bottom_bar"
+            android:paddingTop="@dimen/spacer"
+            android:paddingBottom="@dimen/spacer"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/basket"/>
+
+    <ImageView
+            android:id="@+id/waterseller_basketcounterback_img"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/basket_counter_size"
+            android:padding="@dimen/spacer"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/basket_counter"/>
+
+    <ImageView
+            android:id="@+id/waterseller_basketcount_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacer"
+            android:layout_margin="@dimen/basket_counter_margin"
+            android:layout_alignEnd="@+id/waterseller_basketcounterback_img"
+            android:layout_alignRight="@+id/waterseller_basketcounterback_img"
+            android:layout_alignStart="@+id/waterseller_basketcounterback_img"
+            android:layout_alignLeft="@+id/waterseller_basketcounterback_img"
+            android:layout_alignTop="@+id/waterseller_basketcounterback_img"
+            android:layout_alignBottom="@+id/waterseller_basketcounterback_img"
+            android:src="@drawable/i0"/>
+
+    <!-- main content -->
+
+    <ImageView
+            android:id="@+id/waterseller_bottle_img"
+            android:layout_width="@dimen/bottle_width"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/waterseller_topborder_framelayout"
+            android:layout_above="@+id/waterseller_bottomborder_framelayout"
+            android:src="@drawable/bottle"/>
+
+    <ImageView
+            android:id="@+id/waterseller_discounttext_img"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_toEndOf="@+id/waterseller_bottle_img"
+            android:layout_toRightOf="@+id/waterseller_bottle_img"
+            android:layout_centerVertical="true"
+            android:src="@drawable/text_discount"/>
+
+    <CheckBox
+            android:id="@+id/waterseller_discount_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/checkbox_discount_selector"
+            android:layout_toEndOf="@+id/waterseller_bottle_img"
+            android:layout_toRightOf="@+id/waterseller_bottle_img"
+            android:layout_above="@+id/waterseller_discounttext_img"/>
+
+    <ImageView
+            android:id="@+id/waterseller_tenpercent_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/waterseller_discount_btn"
+            android:layout_toRightOf="@+id/waterseller_discount_btn"
+            android:layout_above="@+id/waterseller_discounttext_img"
+            android:src="@drawable/percent_10"/>
+
+    <!-- bottom bar -->
+
+    <FrameLayout android:id="@+id/waterseller_bottomborder_framelayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="2dp"
+                 android:background="@color/blackish"
+                 android:layout_above="@+id/waterseller_bottombar_framelayout"/>
+
+    <FrameLayout android:id="@+id/waterseller_bottombar_framelayout"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/top_and_bottom_bar"
+                 android:background="@color/colorPrimary"
+                 android:layout_alignParentBottom="true"/>
+
+    <foo.bar.example.forewater.ui.widget.HandWrittenPriceView
+            android:id="@+id/waterseller_totalprice_handwrittenprice"
+            android:layout_width="@dimen/total_and_savings_margin"
+            android:layout_height="@dimen/price_height"
+            android:layout_margin="@dimen/spacer"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/waterseller_bottomborder_framelayout"/>
+
+    <foo.bar.example.forewater.ui.widget.HandWrittenPriceView
+            android:id="@+id/waterseller_savingsprice_handwrittenprice"
+            android:layout_width="@dimen/total_and_savings_margin"
+            android:layout_height="@dimen/price_height"
+            android:layout_marginEnd="@dimen/spacer"
+            android:layout_marginRight="@dimen/spacer"
+            android:layout_marginStart="@dimen/spacer"
+            android:layout_marginLeft="@dimen/spacer"
+            android:layout_marginBottom="@dimen/spacer"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/waterseller_totalprice_handwrittenprice"/>
+
+    <ImageView
+            android:id="@+id/waterseller_totaltext_img"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/price_height"
+            android:layout_toStartOf="@+id/waterseller_totalprice_handwrittenprice"
+            android:layout_toLeftOf="@+id/waterseller_totalprice_handwrittenprice"
+            android:layout_alignTop="@+id/waterseller_totalprice_handwrittenprice"
+            android:layout_alignBottom="@+id/waterseller_totalprice_handwrittenprice"
+            android:scaleType="fitEnd"
+            android:src="@drawable/text_total"/>
+
+    <ImageView
+            android:id="@+id/waterseller_savingstext_img"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/price_height"
+            android:layout_toStartOf="@+id/waterseller_savingsprice_handwrittenprice"
+            android:layout_toLeftOf="@+id/waterseller_savingsprice_handwrittenprice"
+            android:layout_alignTop="@+id/waterseller_savingsprice_handwrittenprice"
+            android:layout_alignBottom="@+id/waterseller_savingsprice_handwrittenprice"
+            android:scaleType="fitEnd"
+            android:src="@drawable/text_saving"/>
+
+    <!-- add remove buttons -->
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:layout_marginEnd="@dimen/button_margin"
+                  android:layout_marginRight="@dimen/button_margin"
+                  android:layout_toStartOf="@+id/waterseller_bottle_img"
+                  android:layout_toLeftOf="@+id/waterseller_bottle_img"
+                  android:layout_centerVertical="true"
+                  android:orientation="vertical">
+
+        <Button
+                android:id="@+id/waterseller_add_btn"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:background="@drawable/button_add_selector"/>
+
+        <Button
+                android:id="@+id/waterseller_remove_btn"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:background="@drawable/button_remove_selector"/>
+
+    </LinearLayout>
+
+</foo.bar.example.forewater.ui.WaterSellerView>
