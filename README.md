@@ -1,6 +1,6 @@
 # Tutorial: android [fore](https://erdo.github.io/android-fore/) syncview
 
-git repo for the android fore spot the bug tutorial [dev.to tutorial](https://dev.to/erdo/tutorial-spot-the-deliberate-bug-165k)
+git repo for the android fore **spot the deliberate bug** tutorial [dev.to tutorial](https://dev.to/erdo/tutorial-spot-the-deliberate-bug-165k)
 
 
 ![tutorial app fore syncview](https://thepracticaldev.s3.amazonaws.com/i/eox7auhypfsnx0j18pgl.gif)
