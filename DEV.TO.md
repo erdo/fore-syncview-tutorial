@@ -192,7 +192,9 @@ In case you haven’t worked out the bug yet, follow the code in the click liste
 ![recreating the bug](https://thepracticaldev.s3.amazonaws.com/i/txm92nh2ob03gwlnxfgs.png)
 <figcaption>recreating the bug</figcaption>
 
-**We forgot to call updateTotalSavingsView() from the add and remove click listeners**, so the savings value will be incorrect in the view unless the discount checkbox is toggled again. UI consistency bugs like this happen all the time, even in simple views.
+**We forgot to call updateTotalSavingsView() from the add and remove click listeners**, so the savings value will be incorrect in the view unless the discount checkbox is toggled again.
+
+UI consistency bugs like this happen all the time, even in simple views.
 
 Unfortunately the view layer is slow and annoying to test (at least on Android), and even with automated tests, these types of bugs are very hard to spot. In this case, an automated test or human tester would have had to have performed specific actions **in the correct sequence** just to see it.
 
@@ -238,7 +240,7 @@ What's surprising about this, is that it's not only **more robust**, it’s also
 
 Here are some [tips](https://erdo.github.io/android-fore/03-reactive-uis.html#writing-an-effective-syncview-method) for writing great syncView() functions.
 
-![gif showing the app rotating](https://thepracticaldev.s3.amazonaws.com/i/fujmzsqfvfu6y3de7af9.gif)
+![gif showing the app rotating](https://thepracticaldev.s3.amazonaws.com/i/eox7auhypfsnx0j18pgl.gif)
 <figcaption>full app, rotation support as standard</figcaption>
 
 This very simple app has no animation code, but it is: clear; robust; has no memory leaks; it's testable; and it supports rotation - which is a great place to be with android before you start adding beautiful animations and finishing touches. Check out the [basic animation sample](https://erdo.github.io/android-fore/#fore-5-ui-example) in the fore docs if you want explore further.
