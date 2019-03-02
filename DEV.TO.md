@@ -1,6 +1,6 @@
 ---
 title: Tutorial: Spot the deliberate bug
-published: false
+published: true
 description:  We implement the syncView() example discussed in the fore docs as a real life android app
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/srs8486xrglptufb8e6y.png
 tags: Android, Kotlin, fore, MVO
@@ -234,9 +234,9 @@ fun syncView() {
 }
 ```
 
-This skips some details, if you want to know how it's all hoooked up that's discussed [here](https://erdo.github.io/android-fore/03-reactive-uis.html#hooking-it-all-up). For our purposes it's good enough to know that whenever our basket model changes, syncView() gets called.
+This skips some details, if you want to know how it's all hooked up that's discussed [here](https://erdo.github.io/android-fore/03-reactive-uis.html#hooking-it-all-up). For our purposes it's good enough to know that whenever our basket model changes, syncView() gets called.
 
-What's surprising about this, is that it's not only **more robust**, it’s also **less code**. (And any android view can be written like this, including those using adapters).
+_What's surprising about this, is that it's not only **more robust**, it’s also **less code**. (And any android view can be written like this, including those using adapters)._
 
 Here are some [tips](https://erdo.github.io/android-fore/03-reactive-uis.html#writing-an-effective-syncview-method) for writing great syncView() functions.
 
