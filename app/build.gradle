@@ -10,11 +10,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "foo.bar.example.forewater"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-    implementation (group: 'co.early.fore', name: 'fore-core', version: '1.0.1', ext: 'aar')
-    implementation (group: 'co.early.fore', name: 'fore-lifecycle', version: '1.0.1', ext: 'aar')
+    implementation (group: 'co.early.fore', name: 'fore-core', version: '1.0.3', ext: 'aar')
+    implementation (group: 'co.early.fore', name: 'fore-lifecycle', version: '1.0.3', ext: 'aar')
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha02'
     implementation 'androidx.core:core-ktx:1.1.0-alpha04'

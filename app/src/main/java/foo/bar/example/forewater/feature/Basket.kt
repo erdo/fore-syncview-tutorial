@@ -46,6 +46,7 @@ class Basket @Inject constructor(
 
     fun setIsDiscounted(isDiscounted: Boolean) {
         discountOn = isDiscounted
+        calculateTotals()
         notifyObservers()
     }
 

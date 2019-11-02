@@ -1,20 +1,17 @@
 package foo.bar.example.forewater.ui
 
-import co.early.fore.lifecycle.LifecycleSyncer
-import co.early.fore.lifecycle.activity.SyncableAppCompatActivity
-import foo.bar.example.forewater.App
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import foo.bar.example.forewater.R
 
 /**
  * Copyright © 2019 early.co. All rights reserved.
  */
-class MainActivity : SyncableAppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
-    override fun getThingsToObserve(): LifecycleSyncer.Observables {
-        return LifecycleSyncer.Observables(App.inst.appComponent.basket)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
     }
 
-    override fun getResourceIdForSyncableView(): Int {
-        return R.layout.activity_main
-    }
 }

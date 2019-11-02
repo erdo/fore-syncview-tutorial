@@ -37,8 +37,8 @@ class HandWrittenPriceView @JvmOverloads constructor(
     fun setPrice(minorUnits: Int) {
         if (currentPrice != minorUnits) {
             currentPrice = minorUnits
-            if (numberWithinRange(minorUnits)) {
-                currentDisplay = MutableList(childCount) { index ->
+            currentDisplay = if (numberWithinRange(minorUnits)) {
+                MutableList(childCount) { index ->
                     when (index) {
                         0 -> Digit.DOLLAR
                         (childCount - 3) -> Digit.DOT
@@ -50,9 +50,13 @@ class HandWrittenPriceView @JvmOverloads constructor(
                     }
                 }
             } else {
-                currentDisplay = MutableList(childCount) { _ -> Digit.DOT }
+                MutableList(childCount) { Digit.DOT }
             }
-            currentDisplay.forEachIndexed { index, digit -> (getChildAt(index) as ImageView).setImageResource(digit.resId) }
+            currentDisplay.forEachIndexed { index, digit ->
+                (getChildAt(index) as ImageView).setImageResource(
+                    digit.resId
+                )
+            }
         }
     }
 
@@ -69,8 +73,8 @@ class HandWrittenPriceView @JvmOverloads constructor(
     }
 
     private fun getDigitForPosition(amountMinorUnits: Int, index: Int, offSet: Int): Digit {
-        var effectiveDigitsSize = childCount - 2  //2 accounting for $ and .
-        var effectiveIndex = index - offSet
+        val effectiveDigitsSize = childCount - 2  //2 accounting for $ and .
+        val effectiveIndex = index - offSet
         return Digit.values()[(amountMinorUnits / 10.0.pow(effectiveDigitsSize - effectiveIndex - 1) % 10).toInt()]
     }
 }
