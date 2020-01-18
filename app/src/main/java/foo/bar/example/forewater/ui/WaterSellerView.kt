@@ -49,6 +49,8 @@ class WaterSellerView @JvmOverloads constructor(
         }
     }
 
+    //Reactive UI implementation
+
     override fun getThingsToObserve(): LifecycleSyncer.Observables {
         return LifecycleSyncer.Observables(App.inst.appComponent.basket)
     }
