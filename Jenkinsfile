@@ -21,7 +21,7 @@ pipeline {
     cron('H */4 * * 1-5')
   }
   tools {
-    maven 'apache-maven-1.0.1'
+   // maven 'apache-maven-1.0.1'
   }
   environment {
     example_key = 'example value'
