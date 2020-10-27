@@ -43,7 +43,7 @@ pipeline {
         //sh 'mvn compile'
       }
       options {
-        timeout(time: 5, unit: 'MINUTES')
+        timeout(time: 2, unit: 'MINUTES')
       }
     }
     stage("build") {
@@ -52,7 +52,7 @@ pipeline {
         //sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
       options {
-        timeout(time: 30, unit: 'MINUTES')
+        timeout(time: 5, unit: 'MINUTES')
       }
     }
     stage("parallel-checks") {
@@ -67,6 +67,9 @@ pipeline {
           steps {
             sh './gradlew :app:lint'
           }
+          options {
+            timeout(time: 5, unit: 'MINUTES')
+          }
         }
         stage("unit-test") {
           steps {
@@ -76,15 +79,21 @@ pipeline {
             //sh 'make check || true'
             //junit '**/target/*.xml'
           }
+          options {
+            timeout(time: 5, unit: 'MINUTES')
+          }
         }
         stage("ui-test") {
           steps {
             sh 'mvn compile'
           }
+          options {
+            timeout(time: 20, unit: 'MINUTES')
+          }
         }
       }
       options {
-        timeout(time: 100, unit: 'MINUTES')
+        timeout(time: 30, unit: 'MINUTES')
       }
     }
     stage('deployment') {
@@ -95,7 +104,7 @@ pipeline {
         echo 'deployment'
       }
       options {
-        timeout(time: 30, unit: 'MINUTES')
+        timeout(time: 15, unit: 'MINUTES')
       }
     }
   }
