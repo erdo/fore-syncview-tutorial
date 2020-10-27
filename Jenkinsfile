@@ -24,7 +24,7 @@ pipeline {
     maven 'apache-maven-1.0.1'
   }
   environment {
-    example key = 'example value'
+    example_key = 'example value'
   }
   options {
     buildDiscarder(logRotator(daysToKeepStr: '7'))
