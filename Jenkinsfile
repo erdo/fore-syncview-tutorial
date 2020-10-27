@@ -40,7 +40,7 @@ pipeline {
       steps {
         echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
         echo "Hello World ${params.teritory}"
-        sh 'mvn compile'
+        //sh 'mvn compile'
       }
       options {
         timeout(time: 5, unit: 'MINUTES')
@@ -48,7 +48,7 @@ pipeline {
     }
     stage("build") {
       steps {
-        sh 'mvn compile'
+        sh './gradlew assembleDebug'
         //sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
       options {
@@ -65,15 +65,16 @@ pipeline {
           		}
             }
           steps {
-            sh 'mvn compile'
+            sh './gradlew :app:lint'
           }
         }
         stage("unit-test") {
           steps {
             //gradle 'clean test'
             //gradle 'assembleDebug'
-            sh 'make check || true'
-            junit '**/target/*.xml'
+            sh "./gradlew test"
+            //sh 'make check || true'
+            //junit '**/target/*.xml'
           }
         }
         stage("ui-test") {
@@ -104,7 +105,7 @@ pipeline {
           echo 'it worked'
       }
       failure {
-          echo 'it didn't work'
+          echo 'it didn work'
         //  mail to: "XXXXX@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Noooo!"
       }
   }
