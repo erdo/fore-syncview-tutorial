@@ -29,7 +29,7 @@ pipeline {
   options {
     buildDiscarder(logRotator(daysToKeepStr: '7'))
     retry(3)
-    timeout(time: 200, unit: 'MINUTES')
+    timeout(time: 20, unit: 'MINUTES')
   }
   parameters {
     string(name: 'teritory', defaultValue: 'GB', description: 'Teritory')
@@ -88,12 +88,12 @@ pipeline {
             sh 'mvn compile'
           }
           options {
-            timeout(time: 20, unit: 'MINUTES')
+            timeout(time: 10, unit: 'MINUTES')
           }
         }
       }
       options {
-        timeout(time: 30, unit: 'MINUTES')
+        timeout(time: 15, unit: 'MINUTES')
       }
     }
     stage('deployment') {
