@@ -57,7 +57,7 @@ pipeline {
     }
     stage("build") {
       steps {
-        sh './gradlew assembleDebug'
+        sh './gradlew --no-daemon assembleDebug'
         //sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
       options {
