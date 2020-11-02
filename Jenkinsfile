@@ -22,6 +22,7 @@ pipeline {
   agent any
 
   triggers {
+    //0 0 0 ? * MON-FRI *
     cron('*/5 * * * *')
   }
 
@@ -51,11 +52,11 @@ pipeline {
       failFast false
       parallel {
         stage("linter") {
-            when {
-              not {
-          			branch 'master';
-          		}
+          when {
+            not {
+              branch 'master';
             }
+          }
           steps {
             sh './gradlew :app:lintDebug'
           }
