@@ -21,26 +21,15 @@ pipeline {
   //}
   agent any
 
-//  environment {
-//    IMAGE = 'registry.gitlab.com/XXXXX/bible-server'
-//    DOCKER_REGISTRY_CREDENTIALS = credentials('DOCKER_REGISTRY_CREDENTIALS')
-//  }
-
   triggers {
-    cron('H */4 * * 1-5')
+    cron('*/5 * * * *')
   }
-   // tools {
-    //    gradle 'gradle'
-   // }
-  //tools {
-   // maven 'apache-maven-1.0.1'
-  //}
+
   environment {
-    example_key = 'example value'
+    EXAMPLE_KEY = 'example value'
   }
   options {
     buildDiscarder(logRotator(daysToKeepStr: '7'))
-    retry(3)
     timeout(time: 20, unit: 'MINUTES')
   }
   parameters {
@@ -48,20 +37,11 @@ pipeline {
   }
 
   stages {
-    stage("checkout") {
-      steps {
-        echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
-        echo "Hello World ${params.teritory}"
-        //sh 'mvn compile'
-      }
-      options {
-        timeout(time: 2, unit: 'MINUTES')
-      }
-    }
     stage("build") {
       steps {
+        echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL} for territory ${params.teritory}"
+        sh "./gradlew clean"
         sh './gradlew --stacktrace assembleDebug'
-        //sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
       options {
         timeout(time: 5, unit: 'MINUTES')
@@ -77,19 +57,15 @@ pipeline {
           		}
             }
           steps {
-            sh './gradlew :app:lint'
+            sh './gradlew :app:lintDebug'
           }
           options {
-            timeout(time: 5, unit: 'MINUTES')
+            timeout(time: 2, unit: 'MINUTES')
           }
         }
         stage("unit-test") {
           steps {
-            //gradle 'clean test'
-            //gradle 'assembleDebug'
-            sh "./gradlew test"
-            //sh 'make check || true'
-            //junit '**/target/*.xml'
+            sh "./gradlew testDebug"
           }
           options {
             timeout(time: 5, unit: 'MINUTES')
@@ -101,19 +77,9 @@ pipeline {
           }
           options {
             timeout(time: 10, unit: 'MINUTES')
+            retry(3)
           }
         }
-      }
-      options {
-        timeout(time: 15, unit: 'MINUTES')
-      }
-    }
-    stage('deployment') {
-      when {
-        branch 'master'
-      }
-      steps {
-        echo 'deployment'
       }
       options {
         timeout(time: 15, unit: 'MINUTES')
@@ -127,7 +93,7 @@ pipeline {
       }
       failure {
           echo 'it didn work'
-        //  mail to: "XXXXX@gmail.com", subject:"SUCCESS: ${currentBuild.fullDisplayName}", body: "Noooo!"
+        //  mail to: "XXXXX@email.com", subject:"FAIL: ${env.BUILD_ID}", body: "din work"
       }
   }
 
