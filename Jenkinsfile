@@ -29,6 +29,9 @@ pipeline {
   triggers {
     cron('H */4 * * 1-5')
   }
+   // tools {
+    //    gradle 'gradle'
+   // }
   //tools {
    // maven 'apache-maven-1.0.1'
   //}
@@ -57,7 +60,7 @@ pipeline {
     }
     stage("build") {
       steps {
-        sh './gradlew --no-daemon assembleDebug'
+        sh './gradlew --stacktrace assembleDebug'
         //sh "./gradlew clean assemble${flavor}Debug -PBUILD_NUMBER=${env.BUILD_NUMBER}"
       }
       options {
