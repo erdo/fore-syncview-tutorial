@@ -21,11 +21,6 @@ pipeline {
   //}
   agent any
 
-  triggers {
-    //0 0 0 ? * MON-FRI *
-    cron('*/5 * * * *')
-  }
-
   environment {
     EXAMPLE_KEY = 'example value'
   }
@@ -74,7 +69,7 @@ pipeline {
         }
         stage("ui-test") {
           steps {
-            sh 'mvn compile'
+            echo 'ui tests here'
           }
           options {
             timeout(time: 10, unit: 'MINUTES')
