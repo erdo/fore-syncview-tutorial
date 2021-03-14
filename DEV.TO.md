@@ -4,21 +4,28 @@ published: true
 description:  We implement the syncView() example discussed in the fore docs as a real life android app
 cover_image: https://thepracticaldev.s3.amazonaws.com/i/srs8486xrglptufb8e6y.png
 tags: Android, Kotlin, fore, MVO
-series: android fore tutorials
 ---
 
-**[Difficulty: 1/5]**
+_This is part of a series on android [fore](https://erdo.github.io/android-fore/)_
+
+| Tutorials in Series                 |
+|:------------------------------------|
+|1) Tutorial: [Spot the deliberate bug](https://dev.to/erdo/tutorial-spot-the-deliberate-bug-165k) |
+|2) Tutorial: [Android fore basics](https://dev.to/erdo/tutorial-android-fore-basics-1155) |
+|3) Tutorial: [Android architecture blueprints, full todo app (MVO edition)](https://dev.to/erdo/tutorial-android-architecture-blueprints-full-todo-app-mvo-edition-259o) |
+|4) Tutorial: [Android state v. event](https://dev.to/erdo/tutorial-android-state-v-event-3n31)|
+|5) Tutorial: [Kotlin Coroutines, Retrofit and fore](https://dev.to/erdo/tutorial-kotlin-coroutines-retrofit-and-fore-3874)|
 
 Don't worry if you're not an Android developer for this one, anyone can spot this bug (but surprisingly few do until it's too late - even with this warning!).
 
 We are about to illustrate how complicated UI code can become (even for simple views), and then what to do about it.
 
-Here's an ugly looking UI for a queue busting app that lets roaming staff sell $1 bottles of water at a festival (spoiler alert: this example is taken straight out of the [fore docs](https://erdo.github.io/android-fore/03-reactive-uis.html#quick-tutorial))
+Here's an ugly looking UI for a queue busting app that lets roaming staff sell $1 bottles of water at a festival.
 
 ![ugly water seller app](https://thepracticaldev.s3.amazonaws.com/i/6u44lbyharznmnht6sfq.png)
 <figcaption>ugly water seller app</figcaption>
 
-As usual with [MVO](https://erdo.github.io/android-fore/00-architecture.html#shoom), we started by writing a model first (see the [**first tutorial**](https://dev.to/erdo/tutorial-android-fore-basics-1155) for a refresher if you need it). We won't discuss the model here any further, other than to say: we called it **Basket**; it is _Observable_; it's quick and easy to unit test; the full kotlin source is in the github repo linked to below; and it has these public functions:
+As usual with [MVO](https://erdo.github.io/android-fore/00-architecture.html#shoom), we started by writing a model first (see the [**second tutorial**](https://dev.to/erdo/tutorial-android-fore-basics-1155) if you want to know how). We won't discuss the model here any further, other than to say: we called it **Basket**; it is _Observable_; it's quick and easy to unit test; the full kotlin source is in the github repo linked to below; and it has these public functions:
 
 ``` kotlin
 fun addBottle()
@@ -34,7 +41,7 @@ fun getTotalSaving(): Int
 # The View Code
 The rule of thumb for applying syncView() in MVO is: **_"If a model being observed changes in any way, then the entire view is refreshed."_**.
 
-Let's first see what happens when we **don't** do that (i.e. how most view layer code is written):
+Let's first see what happens when we **don't** do that (i.e. how a lot of view layer code is written - especially in event driven architectures like MVP for example):
 
 **Step 1 of 3**
 
@@ -58,7 +65,7 @@ removeButton.setOnClickListener {
 ```
 Don't worry about how we get the references for **addButton** and **removeButton** - this works fine as pseudo code (you can check the github source below if you're interested).
 
-Also inside the **updateTotalPriceView()** call, we will just be setting the text in the UI to what the model tells us, essentially:
+For the **updateTotalPriceView()** call we will end up setting the text in the UI to what the model tells us. In a real app, depending on the architecture in place, the code will often go through various components first, but if we follow it through to the end, we will eventually reach a piece of code that does something like this:
 ``` kotlin
 totalPriceView.text = basket.getTotalPrice()
 ```
@@ -157,7 +164,7 @@ private fun updatePostRotation(){
     updateTotalSavingsView()
 }
 ```
-The **updatePostRotation()** method is there to handle android rotations. We probably also want some code to disable the remove button when the basket is empty etc, but this will do for our purposes - it's already complicated enough.
+The **updatePostRotation()** method is there to handle android rotations. We probably also want some code to disable the remove button when the basket is empty etc, but this will do for our purposes - **it's already complicated enough**.
 
 # The Bug
 
@@ -234,7 +241,7 @@ fun syncView() {
 }
 ```
 
-This skips some details, if you want to know how it's all hooked up that's discussed [here](https://erdo.github.io/android-fore/03-reactive-uis.html#hooking-it-all-up). For our purposes it's good enough to know that whenever our basket model changes, syncView() gets called.
+This skips some details, if you want to know how it's all hooked up that's discussed [here](https://erdo.github.io/android-fore/03-reactive-uis.html#connecting-views-and-models). For our purposes it's good enough to know that whenever our basket model changes, syncView() gets called.
 
 _What's surprising about this, is that it's not only **more robust**, it’s also **less code**. (And any android view can be written like this, including those using adapters)._
 
@@ -243,7 +250,7 @@ Here are some [tips](https://erdo.github.io/android-fore/03-reactive-uis.html#wr
 ![gif showing the app rotating](https://thepracticaldev.s3.amazonaws.com/i/eox7auhypfsnx0j18pgl.gif)
 <figcaption>full app, rotation support as standard</figcaption>
 
-This very simple app has no animation code, but it is: clear; robust; has no memory leaks; it's testable; and it supports rotation - which is a great place to be with android before you start adding beautiful animations and finishing touches. Check out the [basic animation sample](https://erdo.github.io/android-fore/#fore-5-ui-example) in the fore docs if you want explore further.
+This very simple app has no animation code, but it is: clear; robust; has no memory leaks; it's testable; and it supports rotation - which is a great place to be with android before you start adding beautiful animations and finishing touches.
 
 -----
 
