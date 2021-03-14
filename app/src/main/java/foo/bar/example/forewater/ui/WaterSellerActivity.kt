@@ -1,35 +1,32 @@
 package foo.bar.example.forewater.ui
 
-import android.content.Context
-import android.util.AttributeSet
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import co.early.fore.core.logging.Logger
+import co.early.fore.core.observer.Observer
 import co.early.fore.core.ui.SyncableView
-import co.early.fore.lifecycle.LifecycleSyncer
-import co.early.fore.lifecycle.view.SyncRelativeLayout
 import foo.bar.example.forewater.App
+import foo.bar.example.forewater.R
 import foo.bar.example.forewater.feature.Basket
 import foo.bar.example.forewater.ui.widget.Digit
-import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Copyright © 2019 early.co. All rights reserved.
  */
-class WaterSellerView @JvmOverloads constructor(
-    context: Context?,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : SyncRelativeLayout(context, attrs, defStyleAttr), SyncableView {
+class WaterSellerActivity : AppCompatActivity(R.layout.activity_main), SyncableView {
 
     //models that we need
     private lateinit var basket: Basket
     private lateinit var logger: Logger
 
-    override fun onFinishInflate() {
-        super.onFinishInflate()
+    //single observer reference
+    var observer = Observer { syncView() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         getModelReferences()
-
-        //(get view references handled for us by kotlin tools)
 
         setClickListeners()
     }
@@ -49,11 +46,8 @@ class WaterSellerView @JvmOverloads constructor(
         }
     }
 
-    //Reactive UI implementation
 
-    override fun getThingsToObserve(): LifecycleSyncer.Observables {
-        return LifecycleSyncer.Observables(App.inst.appComponent.basket)
-    }
+    //reactive UI stuff below
 
     override fun syncView() {
         waterseller_basketcount_img.setImageResource(Digit.values()[basket.getTotalItems()].resId)
@@ -62,5 +56,16 @@ class WaterSellerView @JvmOverloads constructor(
         waterseller_add_btn.isEnabled = basket.canIncrease()
         waterseller_remove_btn.isEnabled = basket.canDecrease()
         waterseller_discount_btn.isChecked = basket.getIsDiscounted()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        basket.addObserver(observer)
+        syncView() //  <- don't forget this
+    }
+
+    override fun onStop() {
+        super.onStop()
+        basket.removeObserver(observer)
     }
 }

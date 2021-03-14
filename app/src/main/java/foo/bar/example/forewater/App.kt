@@ -3,7 +3,10 @@ package foo.bar.example.forewater
 import android.app.Application
 
 /**
- * Try not to fill this class with lots of code, if possible move it to a model somewhere
+ * We're using Dagger for DI here, for a pure DI solution please see the
+ * sample apps in the fore repo - the repo sample apps are also likely
+ * to be more up to date than this sample
+ * see: https://erdo.github.io/android-fore/#sample-apps
  *
  * Copyright © 2019 early.co. All rights reserved.
  */
