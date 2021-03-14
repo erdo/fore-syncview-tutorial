@@ -2,8 +2,8 @@ package foo.bar.example.forewater
 
 import android.app.Application
 import co.early.fore.core.WorkMode
-import co.early.fore.core.logging.AndroidLogger
-import co.early.fore.core.logging.Logger
+import co.early.fore.kt.core.logging.AndroidLogger
+import co.early.fore.kt.core.logging.Logger
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

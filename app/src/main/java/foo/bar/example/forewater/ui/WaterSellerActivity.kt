@@ -2,9 +2,9 @@ package foo.bar.example.forewater.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import co.early.fore.core.logging.Logger
 import co.early.fore.core.observer.Observer
 import co.early.fore.core.ui.SyncableView
+import co.early.fore.kt.core.logging.Logger
 import foo.bar.example.forewater.App
 import foo.bar.example.forewater.R
 import foo.bar.example.forewater.feature.Basket

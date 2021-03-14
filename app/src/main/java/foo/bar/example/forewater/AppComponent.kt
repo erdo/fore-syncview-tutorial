@@ -1,6 +1,6 @@
 package foo.bar.example.forewater
 
-import co.early.fore.core.logging.Logger
+import co.early.fore.kt.core.logging.Logger
 import dagger.Component
 import foo.bar.example.forewater.feature.Basket
 import javax.inject.Singleton

@@ -1,8 +1,9 @@
 package foo.bar.example.forewater.feature
 
 import co.early.fore.core.WorkMode
-import co.early.fore.core.logging.Logger
-import co.early.fore.core.observer.ObservableImp
+import co.early.fore.core.observer.Observable
+import co.early.fore.kt.core.logging.Logger
+import co.early.fore.kt.core.observer.ObservableImp
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,9 +12,9 @@ import javax.inject.Singleton
  */
 @Singleton
 class Basket @Inject constructor(
-    private val logger: Logger,
-    workMode: WorkMode
-) : ObservableImp(workMode) {
+        private val logger: Logger,
+        workMode: WorkMode
+) : Observable by ObservableImp(workMode) {
 
     private val pricePerBottle = 100
     private val maxBottles = 9
