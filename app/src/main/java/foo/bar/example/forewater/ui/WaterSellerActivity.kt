@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Copyright © 2019 early.co. All rights reserved.
  */
-class WaterSellerActivity : AppCompatActivity(R.layout.activity_main), SyncableView {
+class WaterSellerActivity : AppCompatActivity(), SyncableView {
 
     //models that we need
     private lateinit var basket: Basket
@@ -25,6 +25,7 @@ class WaterSellerActivity : AppCompatActivity(R.layout.activity_main), SyncableV
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         getModelReferences()
 
